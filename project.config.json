@@ -1,0 +1,71 @@
+{
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"enhance": true
+	},
+	"appid": "wx9cce20f7207aee56",
+	"projectname": "cloud-music",
+	"libVersion": "2.8.1",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "db guide",
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "音乐",
+					"pathName": "pages/playlist/playlist",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "歌曲列表",
+					"pathName": "pages/musiclist/musiclist",
+					"query": "playlistId=2015136142",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "播放器",
+					"pathName": "pages/player/player",
+					"query": "musicId=1398698380",
+					"scene": null
+				}
+			]
+		}
+	}
+}
