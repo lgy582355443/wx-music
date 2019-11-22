@@ -31,6 +31,7 @@ exports.main = async(event, context) => {
     tasks.push(promise)
   }
 
+  //合并多次请求的数据
   let list = {
     data: []
   }
