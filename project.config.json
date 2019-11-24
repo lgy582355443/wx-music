@@ -36,14 +36,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
-				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
-				},
 				{
 					"id": -1,
 					"name": "音乐",
@@ -59,10 +53,10 @@
 					"scene": null
 				},
 				{
-					"id": 3,
-					"name": "播放器",
-					"pathName": "pages/player/player",
-					"query": "musicId= 2520739691&index=0",
+					"id": -1,
+					"name": "blog",
+					"pathName": "pages/blog/blog",
+					"query": "",
 					"scene": null
 				}
 			]

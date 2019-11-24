@@ -10,7 +10,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    isSame: Boolean
   },
 
   /**
@@ -60,6 +60,7 @@ Component({
         movableDis: this.data.movableDis,
         ['showTime.currentTime']: currentTimeFmt.min + ':' + currentTimeFmt.sec
       })
+      //定位到指定时间播放(单位秒)
       backgroundAudioManager.seek(duration * this.data.progress / 100)
       isMoving = false
       // console.log('end', isMoving)
@@ -78,14 +79,17 @@ Component({
 
     //媒体组件
     _bindBGMEvent() {
-      backgroundAudioManager.onPlay(() => {})
+      backgroundAudioManager.onPlay(() => {
+        isMoving = false;
+        this.triggerEvent('musicPlay');
+      })
 
       backgroundAudioManager.onStop(() => {
 
       })
 
       backgroundAudioManager.onPause(() => {
-
+        this.triggerEvent('musicPause');
       })
 
       backgroundAudioManager.onWaiting(() => {})
@@ -103,22 +107,32 @@ Component({
       })
 
       backgroundAudioManager.onTimeUpdate(() => {
-        const currentTime = backgroundAudioManager.currentTime;
-        const duration = backgroundAudioManager.duration;
-        const currentTimeFmt = this._dateFormat(currentTime);
-        //减少setData次数,优化效率,每一秒执行一次
-        const sec = currentTime.toString().split('.')[0]
-        if (sec != currentSec) {
-          this.setData({
-            ['showTime.currentTime']: `${currentTimeFmt.min}:${currentTimeFmt.sec}`,
-            movableDis: (movableAreaWidth - movableViewWidth) * currentTime / duration,
-            progress: currentTime / duration * 100,
-          })
-          currentSec = sec;
+        if (!isMoving) {
+          const currentTime = backgroundAudioManager.currentTime;
+          duration = backgroundAudioManager.duration;
+          const currentTimeFmt = this._dateFormat(currentTime);
+          //减少setData次数,优化效率,每一秒执行一次
+          const sec = currentTime.toString().split('.')[0]
+          if (sec != currentSec) {
+            this.setData({
+              ['showTime.currentTime']: `${currentTimeFmt.min}:${currentTimeFmt.sec}`,
+              movableDis: (movableAreaWidth - movableViewWidth) * currentTime / duration,
+              progress: currentTime / duration * 100,
+            })
+            currentSec = sec;
+
+            // 联动歌词,子组件通过事件向父组件
+            this.triggerEvent('timeUpdate', {
+              currentTime
+            })
+          }
         }
       })
 
-      backgroundAudioManager.onEnded(() => {})
+      backgroundAudioManager.onEnded(() => {
+        //传给父组件的事件
+        this.triggerEvent('musicEnd')
+      })
 
       backgroundAudioManager.onError((res) => {
 
@@ -127,7 +141,7 @@ Component({
 
     _setTime() {
       //获取歌曲时长(单位秒)
-      const duration = backgroundAudioManager.duration
+      duration = backgroundAudioManager.duration
       const durationFmt = this._dateFormat(duration)
       this.setData({
         ['showTime.totalTime']: `${durationFmt.min}:${durationFmt.sec}`

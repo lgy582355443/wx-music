@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/playlist/playlist",
-    "pages/blog/blog",
     "pages/profile/profile",
     "pages/musiclist/musiclist",
-    "pages/player/player"
+    "pages/player/player",
+    "pages/blog/blog",
+    "components/search/search"
   ],
   "requiredBackgroundModes": [
     "audio",
