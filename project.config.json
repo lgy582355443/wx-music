@@ -55,14 +55,14 @@
 					"id": 2,
 					"name": "歌曲列表",
 					"pathName": "pages/musiclist/musiclist",
-					"query": "playlistId=2015136142",
+					"query": "playlistId= 308240095",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "播放器",
 					"pathName": "pages/player/player",
-					"query": "musicId=1398698380",
+					"query": "musicId= 2520739691&index=0",
 					"scene": null
 				}
 			]

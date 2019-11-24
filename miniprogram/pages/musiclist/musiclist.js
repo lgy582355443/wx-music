@@ -33,8 +33,13 @@ Page({
           name: pl.name,
         }
       })
+      this._saveMusicList();
       wx.hideLoading();
     });
+  },
+
+  _saveMusicList() {
+    wx.setStorageSync('musicList', this.data.musiclist)
   },
 
   /**

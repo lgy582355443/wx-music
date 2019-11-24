@@ -12,6 +12,13 @@ exports.main = async(event, context) => {
     event
   })
 
+  //获取音乐播放地址
+  app.router('musicUrl', async(ctx, next) => {
+    ctx.body = await rp(BASE_URL + `/song/url?id=${event.musicId}`).then((res) => {
+      return res
+    })
+  })
+
   //获取歌单列表
   app.router('playlist', async(ctx, next) => {
     ctx.body = await cloud.database().collection('playlist')

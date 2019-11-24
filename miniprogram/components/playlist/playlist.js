@@ -9,6 +9,7 @@ Component({
     }
   },
 
+  //数据监听器
   observers: {
     ['playlist.playCount'](count) {
       this.setData({
