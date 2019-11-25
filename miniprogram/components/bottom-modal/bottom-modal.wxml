@@ -1,0 +1,8 @@
+<!--components/bottom-mode/bottom-mode.wxml-->
+<view class="modal" hidden="{{!modalShow}}">
+  <view class="panel">
+    <i class="iconfont .icon-quxiao" bind:tap="onClose"></i>
+    <!-- slot插槽  具名插槽-->
+    <slot name="modal-content"></slot>
+  </view>
+</view>
