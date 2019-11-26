@@ -2,7 +2,9 @@
 const MAX_WORDS_NUM = 140
 // 最大上传图片数量
 const MAX_IMG_NUM = 9
-
+const db = wx.cloud.database()
+let content = ''
+let userInfo = {}
 Page({
 
   /**
@@ -22,6 +24,73 @@ Page({
     }
     this.setData({
       wordsNum
+    })
+    content = event.detail.value;
+  },
+
+  //发布
+  send() {
+    if (content.trim() == '') {
+      wx.showModal({
+        title: '请输入内容',
+        content: '',
+      })
+      return
+    }
+    wx.showLoading({
+      title: '发布中',
+      mask: true
+    })
+    let promiseArr = []
+    let fileIds = []
+    //图片上传
+    this.data.images.forEach((item) => {
+      let p = new Promise((resolve, reject) => {
+        //取图片后缀
+        let suffix = /\.\w+$/.exec(item)[0]
+        wx.cloud.uploadFile({
+          cloudPath: 'blog/' + Date.now() + '-' + Math.random() * 1000000 + suffix,
+          filePath: item,
+          success: (res) => {
+            console.log(res.fileID)
+            fileIds = fileIds.concat(res.fileID)
+            resolve()
+          },
+          fail: (err) => {
+            console.error(err)
+            reject()
+          }
+        })
+      })
+      promiseArr.push(p)
+    })
+    //存入云数据库
+    Promise.all(promiseArr).then((res) => {
+      db.collection('blog').add({
+          data: {
+            content,
+            ...userInfo,
+            img: fileIds,
+            createTime: db.serverDate(), //服务端时间
+          }
+        }).then((res) => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '发布成功',
+          })
+
+          wx.navigateBack()
+          //调用上一个页面的刷新方法
+          const pages = getCurrentPages()
+          const prevpage = pages[pages.length - 2]
+          prevpage.onPullDownRefresh()
+        })
+        .catch((err) => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '发布失败',
+          })
+        })
     })
   },
 
@@ -87,7 +156,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    userInfo = options
   },
 
   /**
