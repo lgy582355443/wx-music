@@ -14,9 +14,10 @@ App({
         traceUser: true,
       })
     }
-
+    this.getOpenid()
     this.globalData = {
-      playingMusicId: -1
+      playingMusicId: -1,
+      openid: -1
     }
   },
 
@@ -27,4 +28,18 @@ App({
   getPlayMusicId() {
     return this.globalData.playingMusicId
   },
+
+  //获取openID
+  getOpenid() {
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then((res) => {
+      const openid = res.result.openid
+      this.globalData.openid = openid
+      if (wx.getStorageSync(openid) == '') {
+        wx.setStorageSync(openid, [])
+      }
+    })
+  },
+
 })

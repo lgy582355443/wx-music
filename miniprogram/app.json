@@ -6,7 +6,9 @@
     "pages/player/player",
     "pages/blog/blog",
     "pages/blog-edit/blog-edit",
-    "pages/blog-comment/blog-comment"
+    "pages/blog-comment/blog-comment",
+    "pages/profile-playhistory/profile-playhistory",
+    "pages/profile-bloghistory/profile-bloghistory"
   ],
   "requiredBackgroundModes": [
     "audio",
@@ -16,7 +18,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#d43c43",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "音乐",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -40,9 +42,10 @@
         "text": "我的",
         "iconPath": "images/iconfont/2-3_profile.png",
         "selectedIconPath": "images/iconfont/2-3_profile-actived.png"
+
       }
     ]
   },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "sitemapLocation": "sitemap.json"
+
 }

@@ -42,6 +42,18 @@ Page({
     })
   },
 
+  //保存播放历史
+  savePlayHistory() {
+    const music = musicList[nowPlayingIndex]
+    const openid = app.globalData.openid
+    const history = wx.getStorageSync(openid)
+    let isSave = history.some(item => item.id == music.id)
+    if (!isSave) {
+      history.unshift(music)
+      wx.setStorageSync(openid, history)
+    }
+  },
+
   //上一首
   onPrev() {
     nowPlayingIndex--
@@ -94,7 +106,7 @@ Page({
     if (!this.data.isSame) {
       backgroundAudioManager.stop()
     }
-    
+
     wx.showLoading({
       title: '歌曲加载中',
     })
@@ -127,7 +139,8 @@ Page({
         this.setData({
           isPlaying: true
         })
-        wx.hideLoading()
+        wx.hideLoading();
+        this.savePlayHistory();
 
         // 加载歌词
         wx.cloud.callFunction({
