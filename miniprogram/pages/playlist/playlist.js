@@ -9,15 +9,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    swiperImgUrls: [{
-        url: 'http://p1.music.126.net/oeH9rlBAj3UNkhOmfog8Hw==/109951164169407335.jpg',
-      },
-      {
-        url: 'http://p1.music.126.net/xhWAaHI-SIYP8ZMzL9NOqg==/109951164167032995.jpg',
-      },
-      {
-        url: 'http://p1.music.126.net/Yo-FjrJTQ9clkDkuUCTtUg==/109951164169441928.jpg',
-      }
+    swiperImgUrls: [
+      // {
+      //   url: 'http://p1.music.126.net/oeH9rlBAj3UNkhOmfog8Hw==/109951164169407335.jpg',
+      // },
+      // {
+      //   url: 'http://p1.music.126.net/xhWAaHI-SIYP8ZMzL9NOqg==/109951164167032995.jpg',
+      // },
+      // {
+      //   url: 'http://p1.music.126.net/Yo-FjrJTQ9clkDkuUCTtUg==/109951164169441928.jpg',
+      // }
     ],
     playlist: []
   },
@@ -26,7 +27,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this._getPlaylist()
+    this._getPlaylist();
+    this._getSwiperList();
   },
 
   /**
@@ -62,16 +64,19 @@ Page({
    */
   onPullDownRefresh: function() {
     this.setData({
-      playlist: []
+      playlist: [],
+      swiperImgUrls: []
     })
     this._getPlaylist()
+    this._getSwiperList();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    this._getPlaylist()
+    this._getPlaylist();
+
   },
 
   /**
@@ -97,7 +102,7 @@ Page({
         $url: 'playlist',
       }
     }).then((res) => {
-      console.log(res)
+      // console.log(res)
       this.setData({
         playlist: this.data.playlist.concat(res.result.data)
       })
@@ -106,4 +111,13 @@ Page({
     })
   },
 
+  _getSwiperList() {
+    console.log('hhh')
+    db.collection('swiper').get().then((res) => {
+      console.log(res)
+      this.setData({
+        swiperImgUrls: res.data
+      })
+    })
+  }
 })

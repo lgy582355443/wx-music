@@ -10,3 +10,10 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+## 功能展示
+
+![](E:\porject\wx\cloud-music\wx1.gif)
+
+![](E:\porject\wx\cloud-music\wx2.gif)
+
+![](E:\porject\wx\cloud-music\wx3.png)

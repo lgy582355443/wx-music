@@ -172,14 +172,7 @@ Page({
     this.selectComponent('.lyric').update(event.detail.currentTime)
   },
 
-  // /防抖debounce代码：
-  debounce(fn, delay) {
-    var timeout = null;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      fn();
-    }, delay);
-  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

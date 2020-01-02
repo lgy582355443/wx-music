@@ -45,10 +45,13 @@ Component({
     onChange(event) {
       // console.log(event)
       if (event.detail.source == 'touch') {
+        isMoving = true
         //this.data是用来获取页面data对象的，而this.setData是用来更新界面的
+        // this.setData({
+        //   progress: event.detail.x / (movableAreaWidth - movableViewWidth) * 100
+        // })
         this.data.progress = event.detail.x / (movableAreaWidth - movableViewWidth) * 100
         this.data.movableDis = event.detail.x
-        isMoving = true
       }
     },
 
@@ -89,6 +92,7 @@ Component({
       })
 
       backgroundAudioManager.onPause(() => {
+        isMoving = true;
         this.triggerEvent('musicPause');
       })
 
