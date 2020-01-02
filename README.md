@@ -12,8 +12,8 @@
 
 ## 功能展示
 
-![](E:\porject\wx\cloud-music\wx1.gif)
+![](https://raw.githubusercontent.com/lgy582355443/wx-music/master/wx1.gif)
 
-![](E:\porject\wx\cloud-music\wx2.gif)
+![](https://raw.githubusercontent.com/lgy582355443/wx-music/master/wx2.gif)
 
-![](E:\porject\wx\cloud-music\wx3.png)
+![](https://raw.githubusercontent.com/lgy582355443/wx-music/master/wx3.png)
