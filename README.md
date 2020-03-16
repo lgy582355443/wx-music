@@ -12,8 +12,8 @@
 
 ## 功能展示
 
-![](https://raw.githubusercontent.com/lgy582355443/wx-music/master/wx1.gif)
+![](http://112.74.164.251/projectIMG/wxMusic/wx1.gif)
 
-![](https://raw.githubusercontent.com/lgy582355443/wx-music/master/wx2.gif)
+![](http://112.74.164.251/projectIMG/wxMusic/wx2.gif)
 
-![](https://raw.githubusercontent.com/lgy582355443/wx-music/master/wx3.png)
+![](http://112.74.164.251/projectIMG/wxMusic/wx3.png)
